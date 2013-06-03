@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05441d18646f4a44be8405520dc66c7b" Name="Diagram1">
+        <EntityTypeShape EntityType="LBModel.Bank" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBModel.BankAddressType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBModel.BankBranch" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBModel.BankBranchAddress" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBModel.BankBranchPhone" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBModel.PhoneType" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LBModel.FK_BankBranch_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="LBModel.FK_BankBranchAddress_BankAddressType" ManuallyRouted="false" />
+        <AssociationConnector Association="LBModel.FK_BankBranchAddress_BankBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="LBModel.FK_BankBranchPhone_BankBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="LBModel.FK_BankBranchPhone_PhoneType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

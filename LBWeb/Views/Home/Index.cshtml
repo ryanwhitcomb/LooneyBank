@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LBModel.Bank>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoutingNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoutingNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOpen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BankID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BankID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BankID })
+        </td>
+    </tr>
+}
+
+</table>

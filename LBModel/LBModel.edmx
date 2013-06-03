@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LOONEYBANKModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LOONEYBANKModelStoreContainer">
+          <EntitySet Name="Bank" EntityType="LOONEYBANKModel.Store.Bank" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BankAddressType" EntityType="LOONEYBANKModel.Store.BankAddressType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BankBranch" EntityType="LOONEYBANKModel.Store.BankBranch" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BankBranchAddress" EntityType="LOONEYBANKModel.Store.BankBranchAddress" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BankBranchPhone" EntityType="LOONEYBANKModel.Store.BankBranchPhone" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PhoneType" EntityType="LOONEYBANKModel.Store.PhoneType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BankBranch_Bank" Association="LOONEYBANKModel.Store.FK_BankBranch_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankBranch" EntitySet="BankBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchAddress_BankAddressType" Association="LOONEYBANKModel.Store.FK_BankBranchAddress_BankAddressType">
+            <End Role="BankAddressType" EntitySet="BankAddressType" />
+            <End Role="BankBranchAddress" EntitySet="BankBranchAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchAddress_BankBranch" Association="LOONEYBANKModel.Store.FK_BankBranchAddress_BankBranch">
+            <End Role="BankBranch" EntitySet="BankBranch" />
+            <End Role="BankBranchAddress" EntitySet="BankBranchAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchPhone_BankBranch" Association="LOONEYBANKModel.Store.FK_BankBranchPhone_BankBranch">
+            <End Role="BankBranch" EntitySet="BankBranch" />
+            <End Role="BankBranchPhone" EntitySet="BankBranchPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchPhone_PhoneType" Association="LOONEYBANKModel.Store.FK_BankBranchPhone_PhoneType">
+            <End Role="PhoneType" EntitySet="PhoneType" />
+            <End Role="BankBranchPhone" EntitySet="BankBranchPhone" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="BankDesc" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="RoutingNumber" Type="int" Nullable="false" />
+          <Property Name="IsOpen" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BankAddressType">
+          <Key>
+            <PropertyRef Name="BankAddressTypeID" />
+          </Key>
+          <Property Name="BankAddressTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BankBranch">
+          <Key>
+            <PropertyRef Name="BankBranchID" />
+          </Key>
+          <Property Name="BankBranchID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="int" Nullable="false" />
+          <Property Name="IsOpen" Type="bit" Nullable="false" />
+          <Property Name="IsMainBankBranch" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BankBranchAddress">
+          <Key>
+            <PropertyRef Name="BankBranchAddressID" />
+          </Key>
+          <Property Name="BankBranchAddressID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankBranchID" Type="int" Nullable="false" />
+          <Property Name="BankAddressTypeID" Type="int" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="64" />
+          <Property Name="Address2" Type="varchar" MaxLength="64" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="2" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BankBranchPhone">
+          <Key>
+            <PropertyRef Name="BankBranchPhoneID" />
+          </Key>
+          <Property Name="BankBranchPhoneID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankBranchID" Type="int" Nullable="false" />
+          <Property Name="PhoneTypeID" Type="int" Nullable="false" />
+          <Property Name="PhoneNum" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Extension" Type="varchar" MaxLength="10" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PhoneType">
+          <Key>
+            <PropertyRef Name="PhoneTypeID" />
+          </Key>
+          <Property Name="PhoneTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BankBranch_Bank">
+          <End Role="Bank" Type="LOONEYBANKModel.Store.Bank" Multiplicity="1" />
+          <End Role="BankBranch" Type="LOONEYBANKModel.Store.BankBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankBranch">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchAddress_BankAddressType">
+          <End Role="BankAddressType" Type="LOONEYBANKModel.Store.BankAddressType" Multiplicity="1" />
+          <End Role="BankBranchAddress" Type="LOONEYBANKModel.Store.BankBranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAddressType">
+              <PropertyRef Name="BankAddressTypeID" />
+            </Principal>
+            <Dependent Role="BankBranchAddress">
+              <PropertyRef Name="BankAddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchAddress_BankBranch">
+          <End Role="BankBranch" Type="LOONEYBANKModel.Store.BankBranch" Multiplicity="1" />
+          <End Role="BankBranchAddress" Type="LOONEYBANKModel.Store.BankBranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankBranch">
+              <PropertyRef Name="BankBranchID" />
+            </Principal>
+            <Dependent Role="BankBranchAddress">
+              <PropertyRef Name="BankBranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchPhone_BankBranch">
+          <End Role="BankBranch" Type="LOONEYBANKModel.Store.BankBranch" Multiplicity="1" />
+          <End Role="BankBranchPhone" Type="LOONEYBANKModel.Store.BankBranchPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankBranch">
+              <PropertyRef Name="BankBranchID" />
+            </Principal>
+            <Dependent Role="BankBranchPhone">
+              <PropertyRef Name="BankBranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchPhone_PhoneType">
+          <End Role="PhoneType" Type="LOONEYBANKModel.Store.PhoneType" Multiplicity="1" />
+          <End Role="BankBranchPhone" Type="LOONEYBANKModel.Store.BankBranchPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneType">
+              <PropertyRef Name="PhoneTypeID" />
+            </Principal>
+            <Dependent Role="BankBranchPhone">
+              <PropertyRef Name="PhoneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spLOONEYBANK_Bank_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BankName" Type="varchar" Mode="In" />
+          <Parameter Name="BankDesc" Type="varchar" Mode="In" />
+          <Parameter Name="IsOpen" Type="bit" Mode="In" />
+          <Parameter Name="RoutingNumber" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Banks" EntityType="LBModel.Bank" />
+          <EntitySet Name="BankAddressTypes" EntityType="LBModel.BankAddressType" />
+          <EntitySet Name="BankBranches" EntityType="LBModel.BankBranch" />
+          <EntitySet Name="BankBranchAddresses" EntityType="LBModel.BankBranchAddress" />
+          <EntitySet Name="BankBranchPhones" EntityType="LBModel.BankBranchPhone" />
+          <EntitySet Name="PhoneTypes" EntityType="LBModel.PhoneType" />
+          <AssociationSet Name="FK_BankBranch_Bank" Association="LBModel.FK_BankBranch_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="BankBranch" EntitySet="BankBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchAddress_BankAddressType" Association="LBModel.FK_BankBranchAddress_BankAddressType">
+            <End Role="BankAddressType" EntitySet="BankAddressTypes" />
+            <End Role="BankBranchAddress" EntitySet="BankBranchAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchAddress_BankBranch" Association="LBModel.FK_BankBranchAddress_BankBranch">
+            <End Role="BankBranch" EntitySet="BankBranches" />
+            <End Role="BankBranchAddress" EntitySet="BankBranchAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchPhone_BankBranch" Association="LBModel.FK_BankBranchPhone_BankBranch">
+            <End Role="BankBranch" EntitySet="BankBranches" />
+            <End Role="BankBranchPhone" EntitySet="BankBranchPhones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranchPhone_PhoneType" Association="LBModel.FK_BankBranchPhone_PhoneType">
+            <End Role="PhoneType" EntitySet="PhoneTypes" />
+            <End Role="BankBranchPhone" EntitySet="BankBranchPhones" />
+          </AssociationSet>
+          <FunctionImport Name="spLOONEYBANK_Bank_Insert">
+            <Parameter Name="BankName" Mode="In" Type="String" />
+            <Parameter Name="BankDesc" Mode="In" Type="String" />
+            <Parameter Name="IsOpen" Mode="In" Type="Boolean" />
+            <Parameter Name="RoutingNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BankDesc" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="RoutingNumber" Type="Int32" Nullable="false" />
+          <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BankBranches" Relationship="LBModel.FK_BankBranch_Bank" FromRole="Bank" ToRole="BankBranch" />
+        </EntityType>
+        <EntityType Name="BankAddressType">
+          <Key>
+            <PropertyRef Name="BankAddressTypeID" />
+          </Key>
+          <Property Name="BankAddressTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BankBranchAddresses" Relationship="LBModel.FK_BankBranchAddress_BankAddressType" FromRole="BankAddressType" ToRole="BankBranchAddress" />
+        </EntityType>
+        <EntityType Name="BankBranch">
+          <Key>
+            <PropertyRef Name="BankBranchID" />
+          </Key>
+          <Property Name="BankBranchID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" Nullable="false" />
+          <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+          <Property Name="IsMainBankBranch" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Bank" Relationship="LBModel.FK_BankBranch_Bank" FromRole="BankBranch" ToRole="Bank" />
+          <NavigationProperty Name="BankBranchAddresses" Relationship="LBModel.FK_BankBranchAddress_BankBranch" FromRole="BankBranch" ToRole="BankBranchAddress" />
+          <NavigationProperty Name="BankBranchPhones" Relationship="LBModel.FK_BankBranchPhone_BankBranch" FromRole="BankBranch" ToRole="BankBranchPhone" />
+        </EntityType>
+        <EntityType Name="BankBranchAddress">
+          <Key>
+            <PropertyRef Name="BankBranchAddressID" />
+          </Key>
+          <Property Name="BankBranchAddressID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BankBranchID" Type="Int32" Nullable="false" />
+          <Property Name="BankAddressTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BankAddressType" Relationship="LBModel.FK_BankBranchAddress_BankAddressType" FromRole="BankBranchAddress" ToRole="BankAddressType" />
+          <NavigationProperty Name="BankBranch" Relationship="LBModel.FK_BankBranchAddress_BankBranch" FromRole="BankBranchAddress" ToRole="BankBranch" />
+        </EntityType>
+        <EntityType Name="BankBranchPhone">
+          <Key>
+            <PropertyRef Name="BankBranchPhoneID" />
+          </Key>
+          <Property Name="BankBranchPhoneID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BankBranchID" Type="Int32" Nullable="false" />
+          <Property Name="PhoneTypeID" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Extension" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BankBranch" Relationship="LBModel.FK_BankBranchPhone_BankBranch" FromRole="BankBranchPhone" ToRole="BankBranch" />
+          <NavigationProperty Name="PhoneType" Relationship="LBModel.FK_BankBranchPhone_PhoneType" FromRole="BankBranchPhone" ToRole="PhoneType" />
+        </EntityType>
+        <EntityType Name="PhoneType">
+          <Key>
+            <PropertyRef Name="PhoneTypeID" />
+          </Key>
+          <Property Name="PhoneTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BankBranchPhones" Relationship="LBModel.FK_BankBranchPhone_PhoneType" FromRole="PhoneType" ToRole="BankBranchPhone" />
+        </EntityType>
+        <Association Name="FK_BankBranch_Bank">
+          <End Role="Bank" Type="LBModel.Bank" Multiplicity="1" />
+          <End Role="BankBranch" Type="LBModel.BankBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankBranch">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchAddress_BankAddressType">
+          <End Role="BankAddressType" Type="LBModel.BankAddressType" Multiplicity="1" />
+          <End Role="BankBranchAddress" Type="LBModel.BankBranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAddressType">
+              <PropertyRef Name="BankAddressTypeID" />
+            </Principal>
+            <Dependent Role="BankBranchAddress">
+              <PropertyRef Name="BankAddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchAddress_BankBranch">
+          <End Role="BankBranch" Type="LBModel.BankBranch" Multiplicity="1" />
+          <End Role="BankBranchAddress" Type="LBModel.BankBranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankBranch">
+              <PropertyRef Name="BankBranchID" />
+            </Principal>
+            <Dependent Role="BankBranchAddress">
+              <PropertyRef Name="BankBranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchPhone_BankBranch">
+          <End Role="BankBranch" Type="LBModel.BankBranch" Multiplicity="1" />
+          <End Role="BankBranchPhone" Type="LBModel.BankBranchPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankBranch">
+              <PropertyRef Name="BankBranchID" />
+            </Principal>
+            <Dependent Role="BankBranchPhone">
+              <PropertyRef Name="BankBranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranchPhone_PhoneType">
+          <End Role="PhoneType" Type="LBModel.PhoneType" Multiplicity="1" />
+          <End Role="BankBranchPhone" Type="LBModel.BankBranchPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneType">
+              <PropertyRef Name="PhoneTypeID" />
+            </Principal>
+            <Dependent Role="BankBranchPhone">
+              <PropertyRef Name="PhoneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LOONEYBANKModelStoreContainer" CdmEntityContainer="LBEntities">
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="LBModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankDesc" ColumnName="BankDesc" />
+                <ScalarProperty Name="RoutingNumber" ColumnName="RoutingNumber" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="LBModel.Bank">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="LOONEYBANKModel.Store.spLOONEYBANK_Bank_Insert">
+                  <ScalarProperty Name="RoutingNumber" ParameterName="RoutingNumber" />
+                  <ScalarProperty Name="IsOpen" ParameterName="IsOpen" />
+                  <ScalarProperty Name="BankDesc" ParameterName="BankDesc" />
+                  <ScalarProperty Name="BankName" ParameterName="BankName" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAddressTypes">
+            <EntityTypeMapping TypeName="LBModel.BankAddressType">
+              <MappingFragment StoreEntitySet="BankAddressType">
+                <ScalarProperty Name="BankAddressTypeID" ColumnName="BankAddressTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankBranches">
+            <EntityTypeMapping TypeName="LBModel.BankBranch">
+              <MappingFragment StoreEntitySet="BankBranch">
+                <ScalarProperty Name="BankBranchID" ColumnName="BankBranchID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="IsMainBankBranch" ColumnName="IsMainBankBranch" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankBranchAddresses">
+            <EntityTypeMapping TypeName="LBModel.BankBranchAddress">
+              <MappingFragment StoreEntitySet="BankBranchAddress">
+                <ScalarProperty Name="BankBranchAddressID" ColumnName="BankBranchAddressID" />
+                <ScalarProperty Name="BankBranchID" ColumnName="BankBranchID" />
+                <ScalarProperty Name="BankAddressTypeID" ColumnName="BankAddressTypeID" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankBranchPhones">
+            <EntityTypeMapping TypeName="LBModel.BankBranchPhone">
+              <MappingFragment StoreEntitySet="BankBranchPhone">
+                <ScalarProperty Name="BankBranchPhoneID" ColumnName="BankBranchPhoneID" />
+                <ScalarProperty Name="BankBranchID" ColumnName="BankBranchID" />
+                <ScalarProperty Name="PhoneTypeID" ColumnName="PhoneTypeID" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneTypes">
+            <EntityTypeMapping TypeName="LBModel.PhoneType">
+              <MappingFragment StoreEntitySet="PhoneType">
+                <ScalarProperty Name="PhoneTypeID" ColumnName="PhoneTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spLOONEYBANK_Bank_Insert" FunctionName="LOONEYBANKModel.Store.spLOONEYBANK_Bank_Insert" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

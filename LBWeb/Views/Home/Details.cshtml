@@ -1,0 +1,71 @@
+﻿@model LBModel.Bank
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Bank</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankDesc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RoutingNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoutingNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsOpen)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsOpen)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreateDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreateDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpdateDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpdateDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpdatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpdatedBy)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BankID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

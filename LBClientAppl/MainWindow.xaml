@@ -1,0 +1,61 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:LBModel="clr-namespace:LBModel;assembly=LBModel" mc:Ignorable="d" x:Class="LBClientAppl.MainWindow"
+        Title="Looney Bank" Height="575" Width="1426.042" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="bankViewSource" d:DesignSource="{d:DesignInstance {x:Type LBModel:Bank}, CreateList=True}"/>
+        <CollectionViewSource x:Key="bankBankBranchesViewSource" Source="{Binding BankBranches, Source={StaticResource bankViewSource}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource bankViewSource}" Margin="0,0,581,0">
+        <DataGrid x:Name="bankBranchesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource bankBankBranchesViewSource}}" Margin="10,258,0,86" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="bankBranchIDColumn" Binding="{Binding BankBranchID}" Header="Bank Branch ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="bankIDColumn1" Binding="{Binding BankID}" Header="Bank ID" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="createDateColumn1" Header="Create Date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding CreateDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="createdByColumn1" Binding="{Binding CreatedBy}" Header="Created By" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isMainBankBranchColumn" Binding="{Binding IsMainBankBranch}" Header="Is Main Bank Branch" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isOpenColumn1" Binding="{Binding IsOpen}" Header="Is Open" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="updateDateColumn1" Header="Update Date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding UpdateDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="updatedByColumn1" Binding="{Binding UpdatedBy}" Header="Updated By" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="bankDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,34,10,310" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="bankDescColumn" Binding="{Binding BankDesc}" Header="Bank Desc" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="bankIDColumn" Binding="{Binding BankID}" Header="Bank ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="bankNameColumn" Binding="{Binding BankName}" Header="Bank Name" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="createDateColumn" Header="Create Date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding CreateDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="createdByColumn" Binding="{Binding CreatedBy}" Header="Created By" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isOpenColumn" Binding="{Binding IsOpen}" Header="Is Open" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="routingNumberColumn" Binding="{Binding RoutingNumber}" Header="Routing Number" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="updateDateColumn" Header="Update Date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding UpdateDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="updatedByColumn" Binding="{Binding UpdatedBy}" Header="Updated By" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
